@@ -150,6 +150,7 @@
             id="send-mail"
             class="w-50 my-3"
             style="display: none"
+            onsubmit="clearEmailInput()"
           >
             <div class="input-group">
               <input
@@ -168,6 +169,14 @@
               </button>
             </div>
           </form>
+          <script>
+            function clearEmailInput() {
+              // Use setTimeout to allow form submission first
+              setTimeout(() => {
+                document.getElementById("mailid").value = "";
+              }, 100);
+            }
+          </script>
         </div>
       </div>
     </main>
