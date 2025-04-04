@@ -41,13 +41,13 @@ const generateResponse = () => {
 
         setTimeout(() => {
           thinkingLi.remove();
-          reinitializeVanta();
           chatbox.appendChild(createChatLi(botMessage, "incoming"));
+          reinitializeVanta();
           window.scroll(500, 500);
         }, 1000);
       } else {
-        reinitializeVanta();
         chatbox.appendChild(createChatLi("No response from AI", "incoming"));
+        reinitializeVanta();
         window.scroll(500, 500);
       }
       chatbox.scrollTop = chatbox.scrollHeight;
@@ -61,8 +61,8 @@ const generateResponse = () => {
 const handleChat = () => {
   userMessage = chatInput.value.trim();
   if (!userMessage) return alert("type something");
-  reinitializeVanta();
   chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+  reinitializeVanta();
   window.scroll(500, 500);
   chatInput.value = "";
   generateResponse();

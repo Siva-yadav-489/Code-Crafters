@@ -6,13 +6,10 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 /* fonts */
-.honk-logo {
-  font-family: "Honk", system-ui;
-  font-optical-sizing: auto;
-  font-size: 2rem;
+.montserrat-alternates-regular {
+  font-family: "Montserrat Alternates", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings: "MORF" 15, "SHLN" 50;
 }
 
 .source-sans-3-regular {
@@ -47,7 +44,7 @@ html {
 }
 /* Body Styling */
 body {
-  background: #121212;
+  /* background: #121212; */
   color: #fff;
   /* height: 100%; */
   /* display: flex;
@@ -88,6 +85,20 @@ body {
   background-size: cover; */
   height: 87vh;
   padding-top: 4.7rem;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #888888;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 5px;
 }
 /* gemini logo */
 .btn-shine {
@@ -225,7 +236,7 @@ body {
 
 .chat-input input {
   flex: 1;
-  height: 50px;
+  height: 2.5rem;
   border: none;
   outline: none;
   padding: 10px;
@@ -239,7 +250,7 @@ body {
   /* background: #1c1c1c; */
   color: white;
   border: none;
-  padding: 12px 20px;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   border-radius: 10px;
   transition: background 0.3s;
@@ -269,5 +280,8 @@ body {
     width: 90%;
     height: 80%;
     bottom: 60px;
+  }
+  .chat-input input {
+    width: 80%;
   }
 }

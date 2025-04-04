@@ -32,6 +32,7 @@ async function callGemini(question) {
     return result;
   } catch (error) {
     console.error("An error occurred:", error);
+    return "Error generating proposal";
   }
 }
 
@@ -71,13 +72,13 @@ async function chatWithGemini(question) {
     return result;
   } catch (error) {
     console.error("An error occurred:", error);
+    return "Error in chatbot.";
   }
 }
 app.get("/", (req, res) => {
   //   res.send("home route is working");
   res.redirect("/query");
 });
-
 app.get("/query", (req, res) => {
   res.render("proposal.ejs");
 });

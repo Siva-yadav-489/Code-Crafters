@@ -1,11 +1,9 @@
-.honk-logo {
-  font-family: "Honk", system-ui;
-  font-optical-sizing: auto;
-  font-size: 2rem;
+.montserrat-alternates-regular {
+  font-family: "Montserrat Alternates", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings: "MORF" 15, "SHLN" 50;
 }
+
 .source-sans-3-regular {
   font-family: "Source Sans 3", sans-serif;
   font-optical-sizing: auto;
@@ -110,5 +108,18 @@ textarea::placeholder {
   }
   100% {
     background-position: 180px;
+  }
+}
+
+@media (max-width: 500px) {
+  .share-options {
+    flex-direction: column;
+    align-items: unset !important;
+  }
+  .input-group {
+    flex-wrap: nowrap;
+  }
+  #send-mail {
+    width: 100% !important;
   }
 }

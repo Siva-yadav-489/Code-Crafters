@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Honk&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap"
       rel="stylesheet"
     />
     <link
@@ -30,7 +30,12 @@
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid d-flex">
-        <a class="navbar-brand fw-bold honk-logo" href="/"> Code Crafters </a>
+        <a
+          class="navbar-brand fw-bold montserrat-alternates-regular text-light"
+          href="/"
+        >
+          Code Crafters
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -69,56 +74,57 @@
     <!-- <button class="chatbot-toggler" onclick="toggleChatbot()">
     <i class="fa-solid fa-comment"></i>
 </button> -->
-    <div
-      class="hero-section d-flex flex-column align-items-center justify-content-evenly"
-    >
-      <p class="source-sans-3-regular text-light fs-3 btn-shine">
-        <img src="gemini-brand-color.svg" alt="gemini" width="80%" />
-        Proposal AI
-      </p>
-      <div>
-        <p class="source-sans-3-bold text-light text-center headline">
-          Chat with Our AI-Powered Software Consultant
+    <main>
+      <div
+        class="hero-section d-flex flex-column align-items-center justify-content-evenly"
+      >
+        <p class="source-sans-3-regular text-light fs-3 btn-shine">
+          <img src="gemini-brand-color.svg" alt="gemini" width="80%" />
+          Proposal AI
         </p>
-        <p class="source-sans-3-regular text-light subtext">
-          Get instant answers, refine project requirements, and generate
-          structured proposals—right within our smart chatbot.
-        </p>
+        <div>
+          <p class="source-sans-3-bold text-light text-center headline">
+            Chat with Our AI-Powered Software Consultant
+          </p>
+          <p class="source-sans-3-regular text-light subtext">
+            Get instant answers, refine project requirements, and generate
+            structured proposals—right within our smart chatbot.
+          </p>
+        </div>
+        <button class="btn purple-btn px-4 py-2">
+          <a
+            href="#start-chatting"
+            class="source-sans-3-regular text-light text-decoration-none"
+            >Start chatting</a
+          >
+        </button>
       </div>
-      <button class="btn purple-btn px-4 py-2">
-        <a
-          href="#start-chatting"
-          class="source-sans-3-regular text-light text-decoration-none"
-          >Start chatting</a
-        >
-      </button>
-    </div>
-    <!-- Chatbot Container -->
-    <div
-      class="container d-flex justify-content-center py-5 my-5"
-      id="start-chatting"
-    >
-      <div class="chatbot-container">
-        <!-- <div class="chatbot-header">
+      <!-- Chatbot Container -->
+      <div
+        class="chat-section d-flex justify-content-center py-5 my-5"
+        id="start-chatting"
+      >
+        <div class="chatbot-container">
+          <!-- <div class="chatbot-header">
           <h2>AI Chatbot</h2>
           <button class="close-btn" onclick="toggleChatbot()">✕</button>
         </div> -->
 
-        <ul class="chatbox source-sans-3-regular"></ul>
+          <ul class="chatbox source-sans-3-regular"></ul>
 
-        <div class="chat-input">
-          <input
-            id="question"
-            class="source-sans-3-regular"
-            placeholder="Type a message..."
-            required
-          />
-          <button class="send-btn purple-btn">
-            <i class="fa-solid fa-paper-plane"></i>
-          </button>
+          <form class="chat-input">
+            <input
+              id="question"
+              class="source-sans-3-regular"
+              placeholder="Type a message..."
+            />
+            <button class="send-btn purple-btn">
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </form>
         </div>
       </div>
-    </div>
+    </main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -145,10 +151,10 @@
         }
         // Then, initialize a new Vanta instance
         VANTA.NET({
-          el: "body",
+          el: "main",
           mouseControls: true,
           touchControls: true,
-          gyroControls: false,
+          gyroControls: true,
           minHeight: 200.0,
           minWidth: 200.0,
           scale: 1.0,
@@ -158,6 +164,7 @@
       }
     </script>
     <script>
+      // document.addEventListener("DOMContentLoaded", () => {
       VANTA.NET({
         el: "body",
         mouseControls: true,
@@ -169,6 +176,7 @@
         scaleMobile: 1.0,
         color: 0x3fc7ff,
       });
+      // });
     </script>
   </body>
 </html>
