@@ -28,10 +28,11 @@ async function callGemini(question) {
       contents: prompt,
     });
     const result = response.text;
-    console.log(result);
+    // console.log(result);
     return result;
   } catch (error) {
     console.error("An error occurred:", error);
+    return "Error generating proposal";
   }
 }
 
@@ -59,25 +60,25 @@ function generatePDF(data) {
   }
 }
 //function for chatting with chatgpt
-// async function chatWithGemini(question) {
-//   const prompt = question;
-//   try {
-//     const response = await ai.models.generateContent({
-//       model: "gemini-2.0-flash",
-//       contents: prompt,
-//     });
-//     const result = response.text;
-//     console.log(result);
-//     return result;
-//   } catch (error) {
-//     console.error("An error occurred:", error);
-//   }
-// }
+async function chatWithGemini(question) {
+  const prompt = question;
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: prompt,
+    });
+    const result = response.text;
+    // console.log(result);
+    return result;
+  } catch (error) {
+    console.error("An error occurred:", error);
+    return "Error in chatbot.";
+  }
+}
 app.get("/", (req, res) => {
   //   res.send("home route is working");
   res.redirect("/query");
 });
-
 app.get("/query", (req, res) => {
   res.render("proposal.ejs");
 });
@@ -86,7 +87,7 @@ app.post("/query", async (req, res) => {
   try {
     const request = req.body.requirements;
     const response = await callGemini(request);
-    console.log(response);
+    // console.log(response);
     if (response) {
       generatePDF(response);
     }
@@ -111,17 +112,17 @@ app.get("/chatbot", async (req, res) => {
   res.render("chatbot.ejs");
 });
 
-// app.post("/chatbot", async (req, res) => {
-//   try {
-//     const request = req.body.question;
-//     const response = await chatWithGemini(request);
-//     console.log(request);
-//     console.log(response);
-//     res.json(response);
-//   } catch (err) {
-//     console.log("error: " + err);
-//   }
-// });
+app.post("/chatbot", async (req, res) => {
+  try {
+    const request = req.body.question;
+    const response = await chatWithGemini(request);
+    // console.log(request);
+    // console.log(response);
+    res.json(response);
+  } catch (err) {
+    console.log("error: " + err);
+  }
+});
 
 app.post("/mail", async (req, res) => {
   try {

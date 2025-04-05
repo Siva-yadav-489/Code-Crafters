@@ -9,30 +9,36 @@ form.addEventListener("submit", async (event) => {
   //req-res
   event.preventDefault();
   const requirements = document.getElementById("requirements");
+
   if (!requirements.value) {
     return;
   }
-  //valid req
-
+  form.classList.remove("was-validated");
+  const requirementsValue = requirements.value;
+  requirements.value = "";
   const loading = document.getElementById("loading");
+  reinitializeVanta();
   loading.style.display = "block";
+  window.scrollBy(2000, 2000);
   try {
     const response = await fetch("/query", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ requirements: requirements }),
+      body: JSON.stringify({ requirements: requirementsValue }),
     });
-    requirements.value = "";
+
     const data = await response.json();
 
     const proposalHead = document.getElementById("proposal-head");
     const proposal = document.getElementById("proposal");
     loading.style.display = "none";
     proposal.innerText = data;
+    reinitializeVanta();
     proposalHead.style.display = "block";
     proposal.style.display = "block ";
+    window.scrollBy(12000, 12000);
 
     const download = document.getElementById("downloadPDF");
     download.style.display = "inline-block";

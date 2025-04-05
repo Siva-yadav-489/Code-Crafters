@@ -13,9 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Honk&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap"
       rel="stylesheet"
     />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
       rel="stylesheet"
@@ -25,7 +26,12 @@
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid d-flex">
-        <a class="navbar-brand fw-bold honk-logo" href="/"> Code Crafters </a>
+        <a
+          class="navbar-brand fw-bold montserrat-alternates-regular text-light"
+          href="/"
+        >
+          Code Crafters
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -64,17 +70,20 @@
       <div
         class="hero-section d-flex flex-column align-items-center justify-content-evenly"
       >
-        <p class="honk-logo">Proposal AI</p>
+        <p class="source-sans-3-regular text-light fs-3 btn-shine">
+          <img src="gemini-brand-color.svg" alt="gemini" width="80%" />
+          Proposal AI
+        </p>
         <div>
-          <p class="source-sans-3-bold text-center headline">
+          <p class="source-sans-3-bold text-center headline text-light">
             AI-Powered Software Proposals, Tailored Instantly!
           </p>
-          <p class="source-sans-3-regular text-center subtext">
+          <p class="source-sans-3-regular text-center subtext text-light">
             Get structured, client-ready software proposals in seconds—just
             enter the details, and let AI handle the rest.
           </p>
         </div>
-        <button class="btn cta-btn px-4 py-2">
+        <button class="btn purple-btn px-4 py-2">
           <a
             href="#generate-now"
             class="source-sans-3-regular text-light text-decoration-none"
@@ -97,7 +106,7 @@
           <div class="invalid-feedback">Please enter requirements.</div>
           <button
             type="submit "
-            class="btn btn-dark my-4 py-2 px-5 source-sans-3-regular rounded-pill"
+            class="purple-btn btn btn-primary my-4 py-2 px-5 source-sans-3-regular rounded"
           >
             Submit
           </button>
@@ -105,7 +114,7 @@
       </div>
       <div class="container my-5">
         <button id="loading" class="btn" type="button" style="display: none">
-          <span class="spinner-border align-middle"></span>
+          <span class="spinner-border align-middle text-light"></span>
           <span
             role="status"
             class="source-sans-3-regular align-middle text-light text-center"
@@ -121,15 +130,15 @@
         </p>
         <p
           id="proposal"
-          class="bg-body-secondary p-4 text-light rounded source-sans-3-regular"
+          class="bg-body-secondary p-4 my-2 text-light rounded source-sans-3-regular"
           style="display: none"
         ></p>
         <div
-          class="share-options d-flex justify-content-between align-items-start"
+          class="share-options my-4 d-flex justify-content-between align-items-start"
         >
           <a
             href="/download"
-            class="btn btn-dark"
+            class="btn btn-primary my-3 purple-btn"
             id="downloadPDF"
             style="display: none"
           >
@@ -139,10 +148,11 @@
             action="/mail"
             method="post"
             id="send-mail"
-            class="w-50"
+            class="w-50 my-3"
             style="display: none"
+            onsubmit="clearEmailInput()"
           >
-            <div class="input-group mb-3">
+            <div class="input-group">
               <input
                 type="email"
                 class="form-control"
@@ -150,11 +160,23 @@
                 name="mailid"
                 id="mailid"
               />
-              <button class="btn btn-dark" type="submit" id="button-addon2">
+              <button
+                class="btn btn-primary purple-btn"
+                type="submit"
+                id="button-addon2"
+              >
                 Send
               </button>
             </div>
           </form>
+          <script>
+            function clearEmailInput() {
+              // Use setTimeout to allow form submission first
+              setTimeout(() => {
+                document.getElementById("mailid").value = "";
+              }, 100);
+            }
+          </script>
         </div>
       </div>
     </main>
@@ -163,6 +185,54 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.js"
+      integrity="sha512-+maVcOki4j7Zo1VOqbhjH/fKV7iuE9WYMdhObx1ozxz2xu3qZMVCGHOAZKLKLksakyaWllQzafnLZSGBRl3lRg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.net.min.js"
+      integrity="sha512-lH/5/byfwH0bqySiiSINJJoEoWFEBGKgOwsnAlZZPviNJI1DDBVXjPHgEkM0fowfOp6NMBAN4ROAYjx+uEkEjQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      // Function to re-initialize Vanta.js
+      function reinitializeVanta() {
+        // First, destroy the existing Vanta instance
+        if (VANTA.current) {
+          VANTA.current.destroy();
+        }
+        // Then, initialize a new Vanta instance
+        VANTA.NET({
+          el: "body",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: true,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          color: 0x3fc7ff,
+        });
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        VANTA.NET({
+          el: "main",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          color: 0x3fc7ff,
+        });
+      });
+    </script>
     <script src="/js/proposal.js"></script>
   </body>
 </html>
