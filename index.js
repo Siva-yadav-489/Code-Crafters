@@ -28,7 +28,7 @@ async function callGemini(question) {
       contents: prompt,
     });
     const result = response.text;
-    console.log(result);
+    // console.log(result);
     return result;
   } catch (error) {
     console.error("An error occurred:", error);
@@ -68,7 +68,7 @@ async function chatWithGemini(question) {
       contents: prompt,
     });
     const result = response.text;
-    console.log(result);
+    // console.log(result);
     return result;
   } catch (error) {
     console.error("An error occurred:", error);
@@ -87,7 +87,7 @@ app.post("/query", async (req, res) => {
   try {
     const request = req.body.requirements;
     const response = await callGemini(request);
-    console.log(response);
+    // console.log(response);
     if (response) {
       generatePDF(response);
     }
@@ -116,8 +116,8 @@ app.post("/chatbot", async (req, res) => {
   try {
     const request = req.body.question;
     const response = await chatWithGemini(request);
-    console.log(request);
-    console.log(response);
+    // console.log(request);
+    // console.log(response);
     res.json(response);
   } catch (err) {
     console.log("error: " + err);

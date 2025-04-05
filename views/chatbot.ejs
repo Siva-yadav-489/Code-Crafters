@@ -25,7 +25,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link rel="stylesheet" href="/css/chatbot.css" />
-    <script src="/js/chatbot.js" defer></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -70,59 +69,34 @@
         </div>
       </div>
     </nav>
-    <!-- Chatbot Toggle Button -->
-    <!-- <button class="chatbot-toggler" onclick="toggleChatbot()">
-    <i class="fa-solid fa-comment"></i>
-</button> -->
+
     <main>
-      <div
-        class="hero-section d-flex flex-column align-items-center justify-content-evenly"
-      >
-        <p class="source-sans-3-regular text-light fs-3 btn-shine">
-          <img src="gemini-brand-color.svg" alt="gemini" width="80%" />
-          Proposal AI
-        </p>
-        <div>
-          <p class="source-sans-3-bold text-light text-center headline">
-            Chat with Our AI-Powered Software Consultant
-          </p>
-          <p class="source-sans-3-regular text-light subtext">
-            Get instant answers, refine project requirements, and generate
-            structured proposals—right within our smart chatbot.
-          </p>
-        </div>
-        <button class="btn purple-btn px-4 py-2">
-          <a
-            href="#start-chatting"
-            class="source-sans-3-regular text-light text-decoration-none"
-            >Start chatting</a
-          >
-        </button>
-      </div>
-      <!-- Chatbot Container -->
-      <div
-        class="chat-section d-flex justify-content-center py-5 my-5"
-        id="start-chatting"
-      >
-        <div class="chatbot-container">
-          <!-- <div class="chatbot-header">
-          <h2>AI Chatbot</h2>
-          <button class="close-btn" onclick="toggleChatbot()">✕</button>
-        </div> -->
-
-          <ul class="chatbox source-sans-3-regular"></ul>
-
-          <form class="chat-input">
-            <input
-              id="question"
-              class="source-sans-3-regular"
-              placeholder="Type a message..."
-            />
-            <button class="send-btn purple-btn">
-              <i class="fa-solid fa-paper-plane"></i>
+      <p class="text-center source-sans-3-bold fs-2 text-light">
+        Chat with Our AI-Powered Software Consultant
+      </p>
+      <div class="container w-50 p-3 py-4 mt-3 chat-section rounded">
+        <div
+          id="chat-window"
+          class="d-flex flex-column align-items-center my-1 rounded"
+        ></div>
+        <form id="chatForm" class="needs-validation" novalidate>
+          <div class="d-flex justify-content-center">
+            <div class="w-100">
+              <input
+                class="form-control source-sans-3-regular"
+                placeholder="Ask question here"
+                id="question"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn purple-btn text-light source-sans-3-regular submit-btn"
+            >
+              Submit
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </main>
     <script
@@ -143,30 +117,8 @@
       referrerpolicy="no-referrer"
     ></script>
     <script>
-      // Function to re-initialize Vanta.js
-      function reinitializeVanta() {
-        // First, destroy the existing Vanta instance
-        if (VANTA.current) {
-          VANTA.current.destroy();
-        }
-        // Then, initialize a new Vanta instance
-        VANTA.NET({
-          el: "main",
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: true,
-          minHeight: 200.0,
-          minWidth: 200.0,
-          scale: 1.0,
-          scaleMobile: 1.0,
-          color: 0x3fc7ff,
-        });
-      }
-    </script>
-    <script>
-      // document.addEventListener("DOMContentLoaded", () => {
       VANTA.NET({
-        el: "body",
+        el: "main",
         mouseControls: true,
         touchControls: true,
         gyroControls: false,
@@ -176,7 +128,7 @@
         scaleMobile: 1.0,
         color: 0x3fc7ff,
       });
-      // });
     </script>
+    <script src="/js/chatbot.js"></script>
   </body>
 </html>
