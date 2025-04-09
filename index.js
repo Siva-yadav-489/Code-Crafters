@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 const { GoogleGenAI } = require("@google/genai");
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-//function making req to chatgpt
+//function making req to Gemini
 async function callGemini(question) {
   const prompt = proposalPrompts.context + question + proposalPrompts.additions;
   try {
@@ -59,7 +59,8 @@ function generatePDF(data) {
     console.log("Error generating PDF: " + error);
   }
 }
-//function for chatting with chatgpt
+
+//function for chatting with gemini
 async function chatWithGemini(question) {
   const prompt = question;
   try {
@@ -75,17 +76,32 @@ async function chatWithGemini(question) {
     return "Error in chatbot.";
   }
 }
+
+//home route
 app.get("/", (req, res) => {
   //   res.send("home route is working");
   res.redirect("/query");
 });
+
+//get proposal
 app.get("/query", (req, res) => {
   res.render("proposal.ejs");
 });
 
+//post proposal
 app.post("/query", async (req, res) => {
   try {
     const request = req.body.requirements;
+    if (
+      typeof request !== "string" ||
+      request.trim() === "" ||
+      !isNaN(Number(request)) ||
+      !/[a-zA-Z0-9]/.test(request)
+    ) {
+      return res
+        .status(400)
+        .json({ message: "Requirements must be a non-empty string." });
+    }
     const response = await callGemini(request);
     // console.log(response);
     if (response) {
@@ -98,6 +114,7 @@ app.post("/query", async (req, res) => {
   }
 });
 
+//download pdf
 app.get("/download", (req, res) => {
   const file = path.join(__dirname, "proposal.pdf");
   res.download(file, "proposal.pdf", (err) => {
@@ -108,13 +125,25 @@ app.get("/download", (req, res) => {
   });
 });
 
+//get chatbot
 app.get("/chatbot", async (req, res) => {
   res.render("chatbot.ejs");
 });
 
+//post chatbot
 app.post("/chatbot", async (req, res) => {
   try {
     const request = req.body.question;
+    if (
+      typeof request !== "string" ||
+      request.trim() === "" ||
+      !isNaN(Number(request)) ||
+      !/[a-zA-Z0-9]/.test(request)
+    ) {
+      return res
+        .status(400)
+        .json({ message: "question must be a non-empty string." });
+    }
     const response = await chatWithGemini(request);
     // console.log(request);
     // console.log(response);
@@ -124,6 +153,7 @@ app.post("/chatbot", async (req, res) => {
   }
 });
 
+//send mail
 app.post("/mail", async (req, res) => {
   try {
     const receiver = req.body.mailid;
@@ -152,6 +182,8 @@ app.post("/mail", async (req, res) => {
     });
   }
 });
+
+//listener
 app.listen(3000, () => {
   console.log("server running on port 3000");
 });

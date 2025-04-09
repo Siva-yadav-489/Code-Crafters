@@ -21,10 +21,10 @@
       href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/proposal.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
       <div class="container-fluid d-flex">
         <a
           class="navbar-brand fw-bold montserrat-alternates-regular text-light"
@@ -98,7 +98,7 @@
           novalidate
         >
           <textarea
-            class="form-control rounded"
+            class="form-control rounded source-sans-3-regular"
             placeholder="Enter requirements "
             id="requirements"
             required
@@ -107,13 +107,18 @@
           <button
             type="submit "
             class="purple-btn btn btn-primary my-4 py-2 px-5 source-sans-3-regular rounded"
+            id="submit-proposal"
           >
             Submit
           </button>
         </form>
-      </div>
-      <div class="container my-5">
-        <button id="loading" class="btn" type="button" style="display: none">
+
+        <button
+          id="loading"
+          class="btn my-5"
+          type="button"
+          style="display: none"
+        >
           <span class="spinner-border align-middle text-light"></span>
           <span
             role="status"
@@ -138,7 +143,7 @@
         >
           <a
             href="/download"
-            class="btn btn-primary my-3 purple-btn"
+            class="btn btn-primary my-3 purple-btn source-sans-3-bold"
             id="downloadPDF"
             style="display: none"
           >
@@ -155,13 +160,13 @@
             <div class="input-group">
               <input
                 type="email"
-                class="form-control"
+                class="form-control source-sans-3-regular"
                 placeholder="Enter email"
                 name="mailid"
                 id="mailid"
               />
               <button
-                class="btn btn-primary purple-btn"
+                class="btn btn-primary purple-btn source-sans-3-bold"
                 type="submit"
                 id="button-addon2"
               >
@@ -197,7 +202,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script>
+    <!-- <script>
       // Function to re-initialize Vanta.js
       function reinitializeVanta() {
         // First, destroy the existing Vanta instance
@@ -217,20 +222,18 @@
           color: 0x3fc7ff,
         });
       }
-    </script>
+    </script> -->
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        VANTA.NET({
-          el: "main",
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
-          scale: 1.0,
-          scaleMobile: 1.0,
-          color: 0x3fc7ff,
-        });
+      VANTA.NET({
+        el: ".hero-section",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x3fc7ff,
       });
     </script>
     <script src="/js/proposal.js"></script>

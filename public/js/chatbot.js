@@ -76,16 +76,15 @@ form.addEventListener("submit", async (event) => {
   if (!form.checkValidity()) {
     event.preventDefault();
     event.stopPropagation();
+    form.classList.add("was-validated");
+    return;
   }
-
   //req-response
   event.preventDefault();
   const questionInput = document.getElementById("question");
+  document.querySelector(".submit-btn").disabled = true;
   const question = questionInput.value;
-  //invalid req
-  if (!question) {
-    return alert("Enter any question");
-  }
+
   //valid req
   //you
   let que = document.createElement("p");
@@ -143,10 +142,16 @@ form.addEventListener("submit", async (event) => {
     });
 
     const data = await response.json();
-
     //bot
-    ans.removeChild(spinner);
-    ans.innerText = "Bot: " + data;
+    if (typeof data !== "string") {
+      ans.removeChild(spinner);
+      ans.innerText = "Bot: " + data.message;
+      document.querySelector(".submit-btn").disabled = false;
+    } else {
+      ans.removeChild(spinner);
+      ans.innerText = "Bot: " + data;
+      document.querySelector(".submit-btn").disabled = false;
+    }
   } catch (error) {
     console.error("Error:", error);
     document.getElementById("chat-window").innerText =
