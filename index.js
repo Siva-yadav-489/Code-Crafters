@@ -26,6 +26,10 @@ async function callGemini(question) {
     const response = await ai.models.generateContent({
       model: "gemini-2.0-flash",
       contents: prompt,
+      config: {
+        systemInstruction:
+          "You are a Software Proposal Generator. Your name is Proposal AI by CodeCrafters.",
+      },
     });
     const result = response.text;
     // console.log(result);
@@ -61,16 +65,31 @@ function generatePDF(data) {
 }
 
 //function for chatting with gemini
+const chatHistory = [
+  {
+    role: "user",
+    parts: [{ text: "Hello" }],
+  },
+  {
+    role: "model",
+    parts: [{ text: "Great to meet you. What would you like to know?" }],
+  },
+];
 async function chatWithGemini(question) {
-  const prompt = question;
   try {
-    const response = await ai.models.generateContent({
+    chat = ai.chats.create({
       model: "gemini-2.0-flash",
-      contents: prompt,
+      history: chatHistory,
+      config: {
+        maxOutputTokens: 350,
+      },
     });
-    const result = response.text;
-    // console.log(result);
-    return result;
+
+    const response = await chat.sendMessage({
+      message: question,
+    });
+
+    return response.text;
   } catch (error) {
     console.error("An error occurred:", error);
     return "Error in chatbot.";
@@ -185,5 +204,5 @@ app.post("/mail", async (req, res) => {
 
 //listener
 app.listen(3000, () => {
-  console.log("server running" );
+  console.log("server running");
 });
